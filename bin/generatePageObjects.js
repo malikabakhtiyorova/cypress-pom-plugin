@@ -1,16 +1,17 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 
 const args = process.argv.slice(2);
 const pageName = args[0];
-const pathName = args[1]
+const pathName = args[1];
 
 function generatePageObject(pageName, pageUrl) {
-  if(!pageName){
+  if (!pageName) {
     console.error('Please specify a page name.');
     process.exit(1);
   }
-  if(!pageUrl){
+  if (!pageUrl) {
     console.error('Please specify a page url.');
     process.exit(1);
   }
