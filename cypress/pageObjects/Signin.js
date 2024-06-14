@@ -1,5 +1,5 @@
-// Signin.js
-class Signin {
+// SignIn.js
+class SignIn {
   constructor() {
     this.selectors = {
       // Define selectors here
@@ -8,10 +8,10 @@ class Signin {
 
   // Define methods to interact with the page
   visit() {
-    cy.visit('/singiin');
+    cy.visit('/signin');
   }
 
   // Add more methods as needed
 }
 
-export default new Signin();
+export default new SignIn();
