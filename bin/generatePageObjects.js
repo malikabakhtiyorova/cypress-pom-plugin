@@ -16,21 +16,23 @@ function generatePageObject(pageName, pageUrl) {
     process.exit(1);
   }
 
-  // Determine the directory of the script being executed
-  const scriptDir = __dirname;
+  // Current working directory
+  const currentDir = process.cwd();
 
-  // Resolve paths relative to the script directory
-  const templatePath = path.join(
-    scriptDir,
-    '../templates/pageObjectTemplate.js'
-  );
-  const outputPath = path.join(
-    scriptDir,
-    '../cypress/pageObjects',
-    `${pageName}.js`
-  );
+  // Directory path for page objects
+  const pageObjectsDir = path.join(currentDir, 'cypress/pageObjects');
+
+  // Ensure the directory exists, create it if it doesn't
+  fs.mkdirSync(pageObjectsDir, { recursive: true });
+
+  // Output path relative to the current directory
+  const outputPath = path.join(pageObjectsDir, `${pageName}.js`);
 
   // Read the template file
+  const templatePath = path.join(
+    __dirname,
+    '../templates/pageObjectTemplate.js'
+  );
   fs.readFile(templatePath, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading template:', err);
@@ -47,7 +49,9 @@ function generatePageObject(pageName, pageUrl) {
       if (err) {
         console.error('Error writing output file:', err);
       } else {
-        console.log(`Page object ${pageName}.js created successfully.`);
+        console.log(
+          `Page object ${pageName}.js created successfully in ${pageObjectsDir}.`
+        );
       }
     });
   });
