@@ -1,8 +1,8 @@
 {
   "name": "cypress-pom-plugin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Cypress POM Plugin",
-  "main": "bin/generatePageObjects.js",
+  "main": "./bin/generatePageObjects.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,6 @@
     "replace-in-file": "^7.2.0"
   },
   "bin": {
-    "cypress-pom-plugin": "bin/generatePageObjects.js"
+    "cypress-pom-plugin": "./bin/generatePageObjects.js"
   }
 }
