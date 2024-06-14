@@ -1,0 +1,19 @@
+{
+  "name": "cypress-pom-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "cypress": "^13.11.0",
+    "handlebars": "^4.7.8",
+    "path": "^0.12.7",
+    "replace-in-file": "^7.2.0"
+  }
+}
