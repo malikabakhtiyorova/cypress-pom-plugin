@@ -1,6 +1,6 @@
 {
   "name": "cypress-pom-plugin",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Cypress POM Plugin",
   "main": "./bin/generatePageObjects.js",
   "scripts": {
