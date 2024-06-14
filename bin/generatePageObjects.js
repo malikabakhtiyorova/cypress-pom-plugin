@@ -4,7 +4,7 @@ const path = require('path');
 
 const args = process.argv.slice(2);
 const pageName = args[0];
-const pathName = args[1];
+const pageUrl = args[1];
 
 function generatePageObject(pageName, pageUrl) {
   if (!pageName) {
@@ -15,13 +15,19 @@ function generatePageObject(pageName, pageUrl) {
     console.error('Please specify a page url.');
     process.exit(1);
   }
+
+  // Determine the directory of the script being executed
+  const scriptDir = __dirname;
+
+  // Resolve paths relative to the script directory
   const templatePath = path.join(
-    __dirname,
+    scriptDir,
     '../templates/pageObjectTemplate.js'
   );
   const outputPath = path.join(
-    __dirname,
-    `../cypress/pageObjects/${pageName}.js`
+    scriptDir,
+    '../cypress/pageObjects',
+    `${pageName}.js`
   );
 
   // Read the template file
@@ -48,4 +54,4 @@ function generatePageObject(pageName, pageUrl) {
 }
 
 // Example usage
-generatePageObject(pageName, pathName);
+generatePageObject(pageName, pageUrl);
