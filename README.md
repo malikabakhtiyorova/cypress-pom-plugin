@@ -14,12 +14,12 @@ npm install cypress-pom-plugin
 
 ### How to use *{example}*
 ```bash
-npm cypress-pom-plugin SignIn /signin
+cypress-pom-plugin SignIn /signin
 ```
 
 ```js
 
-// pageObjects/SignIn.js 
+// cypress/pageObjects/SignIn.js  *{if no cypress/pageObjects folder, package will auto generate}*
 
 class SignIn {
   constructor() {
