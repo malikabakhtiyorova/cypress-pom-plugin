@@ -10,10 +10,12 @@ This plugin provides a Page Object Model (POM) structure for Cypress to improve 
 ## Installation
 ```bash
 npm install cypress-pom-plugin
+```
 
 ### How to use *{example}*
 ```bash
 npm cypress-pom-plugin SignIn /signin
+```
 
 ```js
 //SignIn.js
