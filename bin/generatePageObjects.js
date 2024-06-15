@@ -20,20 +20,53 @@ function generatePageObject(pageName, pageUrl) {
   const currentDir = process.cwd();
 
   // Directory path for page objects
-  const pageObjectsDir = path.join(currentDir, 'cypress/pageObjects');
+  const pageObjectsDir = path.join(currentDir, 'cypress/pages/actions');
+
+   const pageTestsDir = path.join(currentDir, 'cypress/integration/tests');
+
+  const pageLocatorsDir = path.join(currentDir, 'cypress/pages/locators');
+
+  const pageDataDir = path.join(currentDir, 'cypress/data');
 
   // Ensure the directory exists, create it if it doesn't
   fs.mkdirSync(pageObjectsDir, { recursive: true });
+  fs.mkdirSync(pageDataDir, { recursive: true });
+  fs.mkdirSync(pageLocatorsDir, { recursive: true });
+  fs.mkdirSync(pageTestsDir, { recursive: true });
 
   // Output path relative to the current directory
-  const outputPath = path.join(pageObjectsDir, `${pageName}.js`);
+  const outputPathPageObjects = path.join(pageObjectsDir, `${pageName}.page.js`);
+
+  const outputPathPageTests = path.join(pageTestsDir, `${pageName}.test.js`);
+
+  const outputPathPageLocators = path.join(
+    pageLocatorsDir,
+    `${pageName}.page.locators.js`
+  );
+
+  const outputPathPageData = path.join(pageDataDir, `${pageName}.data.json`);
 
   // Read the template file
-  const templatePath = path.join(
+  const templatePathPageObjects = path.join(
     __dirname,
     '../templates/pageObjectTemplate.js'
   );
-  fs.readFile(templatePath, 'utf8', (err, data) => {
+
+  const templatePathPageTests = path.join(
+    __dirname,
+    '../templates/pageTestTemplate.js'
+  );
+
+  const templatePathPageLocators = path.join(
+    __dirname,
+    '../templates/pageLocatorTemplate.js'
+  );
+
+   const templatePathPageData = path.join(
+     __dirname,
+     '../templates/pageDataTemplate.json'
+   );
+  fs.readFile(templatePathPageObjects, 'utf8', (err, data) => {
     if (err) {
       console.error('Error reading template:', err);
       return;
@@ -45,12 +78,81 @@ function generatePageObject(pageName, pageUrl) {
       .replace(/{{pageUrl}}/g, pageUrl);
 
     // Write the result to the output file
-    fs.writeFile(outputPath, result, 'utf8', (err) => {
+    fs.writeFile(outputPathPageObjects, result, 'utf8', (err) => {
       if (err) {
         console.error('Error writing output file:', err);
       } else {
         console.log(
-          `Page object ${pageName}.js created successfully in ${pageObjectsDir}.`
+          `Page Object ${pageName}.page.js created successfully in ${pageObjectsDir}.`
+        );
+      }
+    });
+  });
+
+  fs.readFile(templatePathPageData, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading template:', err);
+      return;
+    }
+
+    // Replace placeholders with actual values
+    const result = data
+      .replace(/{{PageName}}/g, pageName)
+      .replace(/{{pageUrl}}/g, pageUrl);
+
+    // Write the result to the output file
+    fs.writeFile(outputPathPageData, result, 'utf8', (err) => {
+      if (err) {
+        console.error('Error writing output file:', err);
+      } else {
+        console.log(
+          `Page Data ${pageName}.data.json created successfully in ${pageDataDir}.`
+        );
+      }
+    });
+  });
+
+  fs.readFile(templatePathPageLocators, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading template:', err);
+      return;
+    }
+
+    // Replace placeholders with actual values
+    const result = data
+      .replace(/{{PageName}}/g, pageName)
+      .replace(/{{pageUrl}}/g, pageUrl);
+
+    // Write the result to the output file
+    fs.writeFile(outputPathPageLocators, result, 'utf8', (err) => {
+      if (err) {
+        console.error('Error writing output file:', err);
+      } else {
+        console.log(
+          `Page Locators ${pageName}.page.locators.js created successfully in ${pageLocatorsDir}.`
+        );
+      }
+    });
+  });
+
+  fs.readFile(templatePathPageTests, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Error reading template:', err);
+      return;
+    }
+
+    // Replace placeholders with actual values
+    const result = data
+      .replace(/{{PageName}}/g, pageName)
+      .replace(/{{pageUrl}}/g, pageUrl);
+
+    // Write the result to the output file
+    fs.writeFile(outputPathPageTests, result, 'utf8', (err) => {
+      if (err) {
+        console.error('Error writing output file:', err);
+      } else {
+        console.log(
+          `Page Test ${pageName}.test.js created successfully in ${pageTestsDir}.`
         );
       }
     });
@@ -59,3 +161,12 @@ function generatePageObject(pageName, pageUrl) {
 
 // Example usage
 generatePageObject(pageName, pageUrl);
+
+//pom:
+//pages/actions/renamed.page.js
+//data/filename.data.js
+//pages/locators/renamed.page.locators.js
+
+//integration/tests/renamed.test.js
+
+//baseclass generate if not exists

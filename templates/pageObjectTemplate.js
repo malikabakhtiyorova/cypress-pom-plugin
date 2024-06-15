@@ -1,14 +1,17 @@
 // {{PageName}}.js
+
+import {{PageName}}Locators from '../locators/{{PageName}}.page.locators'
+import * as {{PageName}}Data from '../../data/{{PageName}}.data.json'
+
 class {{PageName}} {
+  pageLocators = new {{PageName}}Locators()
+
   constructor() {
-    this.selectors = {
-      // Define selectors here
-    };
   }
 
   // Define methods to interact with the page
   visit() {
-    cy.visit('{{pageUrl}}');
+    cy.visit(this.pageLocators.path);
   }
 
   // Add more methods as needed
