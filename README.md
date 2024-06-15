@@ -23,7 +23,7 @@
 
 ### To install the plugin, use npm:
 ```bash
-npm install -D cypress-pom-generator
+npm install -D cypress-pom-plugin
 ```
 
 ## Usage
@@ -31,12 +31,12 @@ npm install -D cypress-pom-generator
 
 To generate a new page object with its associated files, use the following command:
 ```bash
-cypress-pom-generator <PageName> <PageUrl>
+cypress-pom-plugin <PageName> <PageUrl>
 ```
 
 ### Example Command:
 ```bash
-cypress-pom-generator HomePage http://example.com/home
+cypress-pom-plugin HomePage http://example.com/home
 ```
 
 This will create a set of files for HomePage at the specified URL in the appropriate directories.
@@ -55,7 +55,7 @@ Generating a Page Object for "LoginPage":
 
 Run the following command:
 
-cypress-pom-generator LoginPage http://example.com/login
+cypress-pom-plugin LoginPage http://example.com/login
 
 This will create the following files:
 
